@@ -1,0 +1,22 @@
+# Python & Virtualenv
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Model Checkpoints & Large Weights (Keep repo clean)
+results_indobert/
+models/
+*.safetensors
+*.bin
+
+# Datasets
+*.csv
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+image.png
+.ipynb_checkpoints/
