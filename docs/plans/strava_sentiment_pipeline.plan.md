@@ -3,7 +3,7 @@
   - PRD: `docs/prd/strava_sentiment_analysis.prd.md`
   - SRS: `docs/srs/strava_sentiment_analysis.srs.md`
   - ADR: `docs/adr/20260926-hybrid-aspect-and-3class-sentiment.adr.md`
-- **Target Luaran**: Benchmark SINTA 2
+- **Target Luaran**: Benchmark Publikasi Ilmiah
 
 ---
 

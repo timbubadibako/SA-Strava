@@ -1,8 +1,8 @@
-# Research Specification & Blueprint (Target: Jurnal SINTA 2)
+# Research Specification & Blueprint
 ## Project: Strava Play Store Review Sentiment & Aspect-Based Analysis
 
 - **Peneliti Utama**: Syifa Pajril Yaum (NIM: 20230810123)
-- **Target Luaran**: Artikel Ilmiah Terakreditasi Nasional **SINTA 2** (Jalur Bebas Skripsi)
+- **Target Luaran**: Artikel Ilmiah Terakreditasi Nasional (Jalur Bebas Skripsi)
 - **Fokus Keilmuan**: Natural Language Processing (NLP), Machine Learning Text Classification, Human-Computer Interaction (HCI).
 
 ---

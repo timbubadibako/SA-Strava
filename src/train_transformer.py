@@ -1,7 +1,7 @@
 """
 Modul Fine-Tuning IndoBERT (indobenchmark/indobert-base-p1) untuk Klasifikasi Sentimen 3-Kelas
 Arsitektur: Transformer Sequence Classification + RTX 3050 CUDA Acceleration
-Standar: Riset Jurnal SINTA 2 (Ponytail / Zero-Bloat)
+Standar: Riset Jurnal Publikasi Ilmiah (Ponytail / Zero-Bloat)
 """
 
 import os
@@ -129,7 +129,7 @@ def main():
     # 7. Evaluasi Akhir
     print("\n[*] Menjalankan Evaluasi Akhir pada Test Set...")
     eval_results = trainer.evaluate()
-    print("\n=== Hasil Benchmark IndoBERT (Standar SINTA 2) ===")
+    print("\n=== Hasil Benchmark IndoBERT (Standar Publikasi Ilmiah) ===")
     print(f"Accuracy         : {eval_results.get('eval_accuracy', 0)}%")
     print(f"Precision (Macro): {eval_results.get('eval_precision_macro', 0)}%")
     print(f"Recall (Macro)   : {eval_results.get('eval_recall_macro', 0)}%")

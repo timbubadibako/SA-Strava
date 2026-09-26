@@ -1,6 +1,6 @@
 # SA-Strava: Strava Play Store Review Sentiment & Aspect-Based Analysis
 
-Repositori riset komparasi model Machine Learning dan Deep Learning (IndoBERT) pada ulasan aplikasi Strava berbahasa Indonesia untuk publikasi **Jurnal Nasional Terakreditasi SINTA 2**.
+Repositori riset komparasi model Machine Learning dan Deep Learning (IndoBERT) pada ulasan aplikasi Strava berbahasa Indonesia untuk publikasi artikel ilmiah dan pengembangan sistem kebugaran.
 
 ---
 

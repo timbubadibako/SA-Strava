@@ -1,6 +1,6 @@
 # PRD: Strava Review Sentiment & Aspect-Based Analysis
 - **Peneliti / Author**: Syifa Pajril Yaum (NIM: 20230810123)
-- **Target Luaran**: Jurnal Nasional Terakreditasi SINTA 2 (Jalur Bebas Skripsi)
+- **Target Luaran**: Jurnal Nasional Terakreditasi Publikasi Ilmiah (Jalur Bebas Skripsi)
 - **Tanggal**: 2026-09-26
 - **Status**: Approved
 
@@ -44,7 +44,7 @@ Strava merupakan salah satu aplikasi pelacak kebugaran dan lari terpopuler di In
 
 ---
 
-## 5. Acceptance Criteria (SINTA 2 Standard)
+## 5. Acceptance Criteria (Publikasi Ilmiah Standard)
 - [ ] Minimal 10.000 ulasan mentah berhasil ditarik dan tervalidasi.
 - [ ] Dataset bersih terbebas dari duplikasi ulasan dan teks kosong.
 - [ ] Klasifikasi aspek berhasil melabeli ulasan ke dalam 5 taksonomi dengan ambiguitas terendah.

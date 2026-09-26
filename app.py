@@ -1,6 +1,6 @@
 """
 Interactive Data Analyst Dashboard - Strava Review Sentiment & Aspect Analytics
-Standar: Jurnal SINTA 2 (Ponytail / Zero-Bloat)
+Standar: Riset Publikasi Ilmiah (Ponytail / Zero-Bloat)
 Dijalankan via: streamlit run app.py
 """
 
@@ -79,7 +79,7 @@ filtered_df = filtered_df[filtered_df["score"].isin(selected_scores)]
 
 # 3. Header & KPI Metrics
 st.title("🏃 Strava Review Sentiment & Aspect-Based Analytics")
-st.caption("Eksplorasi Data & Komparasi Kinerja Algoritma (Target Publikasi Jurnal SINTA 2) | Peneliti: Syifa Pajril Yaum")
+st.caption("Eksplorasi Data & Komparasi Kinerja Algoritma | Peneliti: Syifa Pajril Yaum")
 
 kpi1, kpi2, kpi3, kpi4, kpi5 = st.columns(5)
 total_rev = len(filtered_df)
@@ -105,7 +105,7 @@ st.write("")
 tab_overview, tab_aspect, tab_models, tab_raw = st.tabs([
     "📊 Distribusi Sentimen & Rating",
     "🎯 Analisis 5 Aspek Kunci",
-    "🤖 Benchmark Model (SINTA 2)",
+    "🤖 Benchmark Model ML",
     "📑 Eksplorasi Data Mentah"
 ])
 

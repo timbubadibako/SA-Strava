@@ -2,7 +2,7 @@
 Modul Training Model Machine Learning Klasik & Evaluasi
 Mendukung: Naive Bayes, Linear SVM, RBF SVM, Random Forest
 Evaluasi: Accuracy, Precision, Recall, Macro F1-Score, Confusion Matrix
-Standar: Jurnal SINTA 2 (Ponytail / Zero-Bloat)
+Standar: Jurnal Publikasi Ilmiah (Ponytail / Zero-Bloat)
 """
 
 import time
@@ -111,5 +111,5 @@ def train_and_benchmark_models(
 if __name__ == "__main__":
     X_tr, X_te, y_tr, y_te = load_and_split_data()
     results = train_and_benchmark_models(X_tr, X_te, y_tr, y_te)
-    print("\n=== Tabel Komparasi Model (Standar Jurnal SINTA 2) ===")
+    print("\n=== Tabel Komparasi Model (Standar Jurnal Publikasi Ilmiah) ===")
     print(results["summary_table"].to_string(index=False))

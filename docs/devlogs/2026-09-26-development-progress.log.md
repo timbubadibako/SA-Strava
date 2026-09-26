@@ -1,7 +1,7 @@
 # Dev Log: Strava Review Sentiment & Aspect-Based Analysis
 - **Date**: 2026-09-26
 - **Engineer**: Syifa Pajril Yaum & AI Assistant
-- **Target**: Jurnal SINTA 2
+- **Target**: Jurnal Publikasi Ilmiah
 
 ---
 

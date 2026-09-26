@@ -1,5 +1,5 @@
 # Workflow Rules & Research Guidelines
-## Project: Strava Sentiment Analysis (SINTA 2 Standard)
+## Project: Strava Sentiment Analysis
 
 Setiap script dan analisis data di direktori ini **WAJIB MENGIKUTI STANDAR ILMIAH BERIKUT**:
 

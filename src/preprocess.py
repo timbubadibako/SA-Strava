@@ -1,7 +1,7 @@
 """
 Modul Preprocessing & Aspect-Based Sentiment Labeling
 Dataset: Google Play Store Reviews (com.strava)
-Standar: Riset Jurnal SINTA 2 (Ponytail / Zero-Bloat)
+Standar: Riset Jurnal Publikasi Ilmiah (Ponytail / Zero-Bloat)
 """
 
 import re

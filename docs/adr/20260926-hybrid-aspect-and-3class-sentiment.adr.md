@@ -6,7 +6,7 @@
 ---
 
 ## 1. Context & Problem Statement
-Dalam riset ulasan Play Store Strava untuk publikasi jurnal SINTA 2:
+Dalam riset ulasan Play Store Strava untuk publikasi jurnal Publikasi Ilmiah:
 1. Membutuhkan anotasi 5 aspek (GPS, UI/UX, Gamifikasi, Subscription, Stabilitas) dari 10.000 ulasan tanpa beban pelabelan manual penuh yang memakan waktu lama, tetapi tetap mempertahankan reliabilitas akademis.
 2. Formulasi kelas sentimen harus merefleksikan realitas rating Google Play Store dan memenuhi standar komparasi multi-model NLP.
 
@@ -25,7 +25,7 @@ Dalam riset ulasan Play Store Strava untuk publikasi jurnal SINTA 2:
 ## 3. Consequences & Trade-offs
 ### Pros:
 - **Kecepatan & Skalabilitas**: 10.000 data ulasan dapat diproses dalam hitungan menit tanpa bottleneck pelabelan manual human-annotator per baris.
-- **Transparansi Akademis**: Aturan leksikon kata kunci terdefinisi jelas di lampiran jurnal dan dapat diaudit oleh reviewer SINTA 2.
+- **Transparansi Akademis**: Aturan leksikon kata kunci terdefinisi jelas di lampiran jurnal dan dapat diaudit oleh reviewer Publikasi Ilmiah.
 - **Relevansi Pasar**: Kelas netral (rating 3) dipertahankan karena sering memuat ulasan bernada konstruktif / saran perbaikan fitur yang bernilai bagi HCI.
 
 ### Cons & Mitigations:

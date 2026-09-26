@@ -1,4 +1,4 @@
-# Laporan Evaluasi & Sintesis Benchmark (Standar Jurnal SINTA 2)
+# Laporan Evaluasi & Sintesis Benchmark (Standar Jurnal Publikasi Ilmiah)
 ## Analisis Sentimen & Aspek Ulasan Strava Google Play Store
 - **Peneliti**: Syifa Pajril Yaum (NIM: 20230810123)
 - **Dataset**: 9.843 Ulasan Bersih (`com.strava`, Google Play Store Indonesia)
