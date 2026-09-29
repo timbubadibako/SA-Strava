@@ -43,8 +43,17 @@ st.markdown("""
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("strava_reviews_processed.csv")
-    df["at"] = pd.to_datetime(df["at"], errors="coerce")
+    df_ps = pd.read_csv("strava_reviews_processed.csv")
+    df_ps["platform"] = "Google Play Store (Android)"
+    df_ps["at"] = pd.to_datetime(df_ps["at"], errors="coerce")
+
+    try:
+        df_ap = pd.read_csv("strava_appstore_reviews_processed.csv")
+        df_ap["platform"] = "Apple App Store (iOS)"
+        df_ap["at"] = pd.to_datetime(df_ap["at"], errors="coerce")
+        df = pd.concat([df_ps, df_ap], ignore_index=True)
+    except Exception:
+        df = df_ps
     return df
 
 
@@ -53,6 +62,10 @@ df = load_data()
 # 2. Sidebar Filters
 st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/c/cb/Strava_Logo.svg", width=160)
 st.sidebar.title("Filter Parameter")
+
+# Filter Platform
+platform_options = ["Semua Platform", "Google Play Store (Android)", "Apple App Store (iOS)"]
+selected_platform = st.sidebar.selectbox("Pilih Platform", platform_options)
 
 # Filter Sentimen
 sentiment_options = ["Semua"] + list(df["sentiment_label"].unique())
@@ -71,6 +84,8 @@ selected_scores = st.sidebar.multiselect(
 
 # Apply Filter
 filtered_df = df.copy()
+if selected_platform != "Semua Platform":
+    filtered_df = filtered_df[filtered_df["platform"] == selected_platform]
 if selected_sentiment != "Semua":
     filtered_df = filtered_df[filtered_df["sentiment_label"] == selected_sentiment]
 if selected_aspect != "Semua":
@@ -102,9 +117,10 @@ with kpi5:
 st.write("")
 
 # 4. Tab Navigasi Visualisasi
-tab_overview, tab_aspect, tab_models, tab_raw = st.tabs([
+tab_overview, tab_aspect, tab_crossplatform, tab_models, tab_raw = st.tabs([
     "📊 Distribusi Sentimen & Rating",
     "🎯 Analisis 5 Aspek Kunci",
+    "🌐 Komparasi Lintas Platform (Android vs iOS)",
     "🤖 Benchmark Model ML",
     "📑 Eksplorasi Data Mentah"
 ])
@@ -196,6 +212,71 @@ with tab_aspect:
     - **Stability & Baterai** menempati posisi kedua masalah pengguna (**55.8% Negatif**), akibat crash aplikasi dan sinkronisasi jam smartwatch yang terputus.
     - **UI/UX & Gamifikasi** menuai kepuasan tinggi (**>59% Positif**), membuktikan komunitas pelari sangat menyukai fitur kompetisi sosial (KOM/QOM, Kudos).
     """)
+
+with tab_crossplatform:
+    st.subheader("🌐 Komparasi Sentimen Pengguna: Google Play Store vs Apple App Store")
+    st.caption("Bukti empiris penguat latar belakang penelitian: mengisolasi friksi spesifik OS (Android vs iOS).")
+
+    # Komparasi Makro Sentimen
+    platform_sentiment = pd.crosstab(df["platform"], df["sentiment_label"], normalize="index") * 100
+    
+    col_cp1, col_cp2 = st.columns([1, 1])
+    with col_cp1:
+        fig_cp = px.bar(
+            platform_sentiment.reset_index(),
+            x="platform",
+            y=["NEGATIVE", "NEUTRAL", "POSITIVE"],
+            barmode="stack",
+            color_discrete_map={"NEGATIVE": "#ef4444", "NEUTRAL": "#94a3b8", "POSITIVE": "#10b981"},
+            title="Perbandingan Proporsi Polaritas Sentimen Lintas OS"
+        )
+        fig_cp.update_layout(yaxis_title="Persentase (%)", xaxis_title="", legend_title="Sentimen")
+        st.plotly_chart(fig_cp, use_container_width=True)
+
+    with col_cp2:
+        # Perbandingan Rata-rata Skor & Ulasan Negatif
+        st.markdown("""
+        <div style='background-color:#fff7ed; border-left:4px solid #f97316; padding:12px; border-radius:4px; margin-bottom:12px;'>
+            <strong>Temuan Kunci untuk Latar Belakang:</strong><br>
+            • <strong>Sentimen Negatif iOS Melonjak (43.9% vs 23.7%)</strong>: Pengguna Apple App Store hampir 2x lipat lebih kritis terhadap Strava dibandingkan pengguna Android.<br>
+            • <strong>Subscription di iOS (95.0% Negatif)</strong>: Isu pemotongan otomatis Apple ID (Rp 349.000,-) tanpa konfirmasi transparan menjadi titik kemarahan terbesar.<br>
+            • <strong>GPS di iOS (53.7% Negatif)</strong>: Mematahkan asumsi bahwa ekosistem Apple bebas isu lokasi; pengguna melaporkan data drift dan rute kacau saat menggunakan smartwatch pihak ketiga.
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Tabel Ringkasan
+        cp_summary = pd.DataFrame([
+            {"Platform": "Google Play Store (Android)", "Total Ulasan": "9,843", "Positif": "69.99%", "Netral": "6.33%", "Negatif": "23.68%"},
+            {"Platform": "Apple App Store (iOS)", "Total Ulasan": "440", "Positif": "47.95%", "Netral": "8.18%", "Negatif": "43.86%"}
+        ])
+        st.dataframe(cp_summary, use_container_width=True)
+
+    # Breakdown Komparasi Negatif per Aspek
+    st.write("---")
+    st.markdown("##### 📌 Persentase Sentimen Negatif per Aspek Antar Platform")
+    ps_data = df[df["platform"] == "Google Play Store (Android)"]
+    ap_data = df[df["platform"] == "Apple App Store (iOS)"]
+    
+    ps_neg = (pd.crosstab(ps_data["aspect_category"], ps_data["sentiment_label"], normalize="index")["NEGATIVE"] * 100).round(1)
+    ap_neg = (pd.crosstab(ap_data["aspect_category"], ap_data["sentiment_label"], normalize="index")["NEGATIVE"] * 100).round(1)
+    
+    aspect_order = ["SUBSCRIPTION", "STABILITY", "GPS_TRACKING", "UI_UX", "GAMIFICATION"]
+    comp_aspect_df = pd.DataFrame({
+        "Aspek": aspect_order,
+        "Play Store (Android) Negatif (%)": [ps_neg.get(a, 0) for a in aspect_order],
+        "App Store (iOS) Negatif (%)": [ap_neg.get(a, 0) for a in aspect_order]
+    })
+    
+    fig_comp_aspect = px.bar(
+        comp_aspect_df,
+        x="Aspek",
+        y=["Play Store (Android) Negatif (%)", "App Store (iOS) Negatif (%)"],
+        barmode="group",
+        color_discrete_sequence=["#3b82f6", "#f43f5e"],
+        title="Tingkat Ketidakpuasan Pengguna (Sentimen Negatif) per Aspek"
+    )
+    fig_comp_aspect.update_layout(yaxis_title="Persentase Negatif (%)")
+    st.plotly_chart(fig_comp_aspect, use_container_width=True)
 
 with tab_models:
     st.subheader("Hasil Komparasi Kinerja Algoritma (RQ-2)")
